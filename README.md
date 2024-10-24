@@ -1,4 +1,4 @@
-# AutoClicker
+# AutoClicker (Latest version: 1.4)
 ## Simple autoclicker with beautiful GUI and multi-language support
 
 If you want to make your own autoclicker, you need to download the following Python libraries via pip: pyinstaller, keyboard, mouse, PyQt5.
@@ -19,7 +19,7 @@ Features:
 
 ---
 
-# АвтоКликер
+# Авто Кликер
 ## Простой автокликер с красивым графическим интерфейсом и поддержкой нескольких языков
 
 Если вы хотите создать свой собственный автокликер, вам нужно скачать следующие библиотеки Python через pip: pyinstaller, keyboard, mouse, PyQt5.
