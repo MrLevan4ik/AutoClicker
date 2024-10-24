@@ -2,3 +2,4 @@ pyinstaller
 keyboard
 mouse
 PyQt5
+requests
