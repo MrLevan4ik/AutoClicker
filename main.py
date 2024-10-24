@@ -1,6 +1,6 @@
 import sys
 from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QHBoxLayout, QLabel, QLineEdit, QPushButton, QMessageBox
-from PyQt5.QtCore import QThread, pyqtSignal
+from PyQt5.QtCore import QThread
 import keyboard
 import mouse
 import time
@@ -56,6 +56,32 @@ class AutoClicker(QWidget):
 
         self.setLayout(layout)
         self.setWindowTitle("AutoClicker")
+
+        # Apply styles
+        self.setStyleSheet("""
+            QWidget {
+                background-color: #2E3440;
+                color: #D8DEE9;
+                font-family: Arial;
+                font-size: 14px;
+            }
+            QLineEdit, QPushButton {
+                background-color: #4C566A;
+                border: 1px solid #D8DEE9;
+                border-radius: 5px;
+                padding: 5px;
+            }
+            QPushButton:hover {
+                background-color: #5E81AC;
+            }
+            QPushButton:pressed {
+                background-color: #88C0D0;
+            }
+            QLabel {
+                font-weight: bold;
+            }
+        """)
+
         self.show()
 
     def set_hotkey(self):
