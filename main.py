@@ -1,4 +1,6 @@
 import sys
+import os
+import json
 from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QHBoxLayout, QLabel, QLineEdit, QPushButton, QMessageBox
 from PyQt5.QtCore import QThread
 import keyboard
@@ -25,13 +27,14 @@ class AutoClicker(QWidget):
         self.initUI()
         self.clicker_thread = ClickerThread()
         self.clicker_thread.start()
+        self.load_hotkey()
 
     def initUI(self):
         layout = QVBoxLayout()
 
         hotkey_layout = QHBoxLayout()
         hotkey_layout.addWidget(QLabel("Hotkey:"))
-        self.hotkey_input = QLineEdit()
+        self.hotkey_input = QLineEdit("W+S")  # default hotkey
         hotkey_layout.addWidget(self.hotkey_input)
         self.set_hotkey_button = QPushButton("Set")
         self.set_hotkey_button.clicked.connect(self.set_hotkey)
@@ -90,6 +93,7 @@ class AutoClicker(QWidget):
             try:
                 keyboard.add_hotkey(hotkey, self.toggle_clicker)
                 self.set_hotkey_button.setText(f"Set: {hotkey}")
+                self.save_hotkey(hotkey)
             except ValueError as e:
                 QMessageBox.warning(self, "Invalid Hotkey", str(e))
         else:
@@ -106,6 +110,24 @@ class AutoClicker(QWidget):
         self.clicker_thread.clicking = not self.clicker_thread.clicking
         status = "Enabled" if self.clicker_thread.clicking else "Disabled"
         self.status_label.setText(f"Status: {status}")
+
+    def save_hotkey(self, hotkey):
+        temp_dir = os.path.join(os.environ.get('TEMP', os.path.expanduser('~')), 'AutoClicker')
+        os.makedirs(temp_dir, exist_ok=True)
+        config_file = os.path.join(temp_dir, 'config.json')
+        with open(config_file, 'w') as f:
+            json.dump({'hotkey': hotkey}, f)
+
+    def load_hotkey(self):
+        temp_dir = os.path.join(os.environ.get('TEMP', os.path.expanduser('~')), 'AutoClicker')
+        config_file = os.path.join(temp_dir, 'config.json')
+        if os.path.exists(config_file):
+            with open(config_file, 'r') as f:
+                config = json.load(f)
+                hotkey = config.get('hotkey')
+                if hotkey:
+                    self.hotkey_input.setText(hotkey)
+        self.set_hotkey()
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
