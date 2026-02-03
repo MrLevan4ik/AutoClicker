@@ -1,5 +1,5 @@
-pyinstaller
-keyboard
-mouse
-PyQt5
-requests
+pyinstaller>=6.3.0
+keyboard>=0.13.5
+mouse>=0.7.1
+PyQt5>=5.15.10
+requests>=2.31.0

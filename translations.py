@@ -24,6 +24,9 @@ translations = {
         'invalid_duration': 'Invalid Duration',
         'enter_valid_duration': 'Please enter a valid number for duration.',
         'language': 'Language:',
+        'theme': 'Theme:',
+        'dark': 'Dark',
+        'light': 'Light',
     },
     'ru': {
         'AutoClicker': 'АвтоКликер',
@@ -50,5 +53,8 @@ translations = {
         'invalid_duration': 'Неверная продолжительность',
         'enter_valid_duration': 'Пожалуйста, введите корректное число для продолжительности.',
         'language': 'Язык:',
+        'theme': 'Тема:',
+        'dark': 'Тёмная',
+        'light': 'Светлая',
     }
 }
